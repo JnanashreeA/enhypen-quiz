@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which ENHYPEN Member Are You Compatible With?</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #e6f0ff);
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      color: #ff4d88;
+    }
+    .quiz-box {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    button {
+      background: #ff7eb9;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff4d88;
+    }
+    img {
+      width: 200px;
+      border-radius: 15px;
+      margin-top: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Which ENHYPEN Member Are You Compatible With? 💖</h1>
+
+  <div class="quiz-box" id="quiz">
+    <p><b>1. What’s your ideal date?</b></p>
+    <button onclick="selectAnswer('jungwon')">🎮 Gaming night</button>
+    <button onclick="selectAnswer('heeseung')">🎤 Karaoke session</button>
+    <button onclick="selectAnswer('jay')">🍽 Fancy dinner</button>
+    <button onclick="selectAnswer('jake')">🏞 Nature walk</button>
+    <button onclick="selectAnswer('sunghoon')">⛸ Ice skating</button>
+    <button onclick="selectAnswer('sunoo')">☕ Cozy cafe</button>
+    <button onclick="selectAnswer('niki')">🎢 Theme park</button>
+  </div>
+
+  <script>
+    let scores = {
+      jungwon: 0,
+      heeseung: 0,
+      jay: 0,
+      jake: 0,
+      sunghoon: 0,
+      sunoo: 0,
+      niki: 0
+    };
+
+    let questionIndex = 1;
+
+    function selectAnswer(member) {
+      scores[member]++;
+      questionIndex++;
+
+      if (questionIndex === 2) {
+        document.getElementById("quiz").innerHTML = `
+          <p><b>2. Pick a hobby:</b></p>
+          <button onclick="selectAnswer('heeseung')">🎶 Singing</button>
+          <button onclick="selectAnswer('jake')">⚽ Sports</button>
+          <button onclick="selectAnswer('jay')">📚 Reading</button>
+          <button onclick="selectAnswer('sunghoon')">⛷ Skating</button>
+          <button onclick="selectAnswer('sunoo')">🎨 Drawing</button>
+          <button onclick="selectAnswer('jungwon')">🐶 Playing with pets</button>
+          <button onclick="selectAnswer('niki')">💃 Dancing</button>
+        `;
+      } else if (questionIndex === 3) {
+        document.getElementById("quiz").innerHTML = `
+          <p><b>3. Choose a color:</b></p>
+          <button onclick="selectAnswer('sunghoon')">💙 Blue</button>
+          <button onclick="selectAnswer('jake')">🖤 Black</button>
+          <button onclick="selectAnswer('jay')">🤍 White</button>
+          <button onclick="selectAnswer('heeseung')">💗 Pink</button>
+          <button onclick="selectAnswer('jungwon')">💚 Green</button>
+          <button onclick="selectAnswer('sunoo')">💜 Purple</button>
+          <button onclick="selectAnswer('niki')">💛 Yellow</button>
+        `;
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+      let memberData = {
+        jungwon: {
+          name: "Jungwon 🐱",
+          img: "https://i.imgur.com/kq4kL3W.jpg",
+          desc: "You match with Jungwon! Sweet, caring, and always thoughtful ❤️"
+        },
+        heeseung: {
+          name: "Heeseung 🎵",
+          img: "https://i.imgur.com/YpGTh8Q.jpg",
+          desc: "You’re meant for Heeseung! Talented, soft, and romantic 💕"
+        },
+        jay: {
+          name: "Jay 🦅",
+          img: "https://i.imgur.com/9p3YZ2O.jpg",
+          desc: "You’re a match for Jay! Loyal, stylish, and full of passion 💖"
+        },
+        jake: {
+          name: "Jake 🐶",
+          img: "https://i.imgur.com/BLzBtNE.jpg",
+          desc: "Jake is your soulmate! Warm, loving, and funny 💞"
+        },
+        sunghoon: {
+          name: "Sunghoon ⛸",
+          img: "https://i.imgur.com/zApfC8M.jpg",
+          desc: "Sunghoon is your ideal type! Cool, calm, and charming ❄️"
+        },
+        sunoo: {
+          name: "Sunoo ☀️",
+          img: "https://i.imgur.com/tXLF7eo.jpg",
+          desc: "You’re most compatible with Sunoo! Bright, cute, and full of love 🌸"
+        },
+        niki: {
+          name: "Ni-ki 🕺",
+          img: "https://i.imgur.com/3l3y6vT.jpg",
+          desc: "Ni-ki is your perfect match! Fun, energetic, and playful 💫"
+        }
+      };
+
+      let result = memberData[winner];
+
+      document.getElementById("quiz").innerHTML = `
+        <h2>You’re most compatible with <span style="color:#ff4d88">${result.name}</span>!</h2>
+        <img src="${result.img}" alt="${result.name}">
+        <p>${result.desc}</p>
+        <button onclick="location.reload()">🔄 Try Again</button>
+      `;
+    }
+  </script>
+</body>
+</html>
