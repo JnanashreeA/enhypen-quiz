@@ -1,2 +1,3 @@
 My first note in this project.
 Second line in notes.txt
+This line is from feature-quiz branch.
